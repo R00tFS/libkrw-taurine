@@ -1,0 +1,12 @@
+Package: libkrw0-libkernrw
+Name: libkrw Plug-in (libkernw)
+Author: rootfs
+Maintainer: rootfs
+Architecture: iphoneos-arm
+Version: 1.0
+Provides: libkrw0-plugin
+Depends: libkrw0
+Section: Libraries
+Priority: standard
+Homepage: https://github.com/FireBibi/libkrw-libkernrw
+Description: libkrw Plug-In for libkernrw (Shared Library)
