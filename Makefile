@@ -1,7 +1,7 @@
 TARGET = libkrw-plugin.dylib
 CC = clang
 
-CFLAGS = -Iinclude/ -isysroot $(shell xcrun --sdk iphoneos --show-sdk-path) -arch arm64 -arch arm64e -miphoneos-version-min=14.0 -fobjc-arc -O3
+CFLAGS = -Iinclude/ -isysroot $(shell xcrun --sdk iphoneos --show-sdk-path) -arch arm64 -arch arm64e -miphoneos-version-min=14.0 -fobjc-arc -O3 -fvisibility=hidden
 LDFLAGS = -dynamiclib -rpath /
 
 all: $(TARGET) sign
