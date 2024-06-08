@@ -1,4 +1,4 @@
-Package: libkrw0-libkernrw
+Package: libkrw0-taurine
 Name: libkrw Plug-in (libkernw)
 Author: rootfs
 Maintainer: rootfs
@@ -8,5 +8,5 @@ Provides: libkrw0-plugin
 Depends: libkrw0
 Section: Libraries
 Priority: standard
-Homepage: https://github.com/FireBibi/libkrw-libkernrw
+Homepage: https://github.com/FireBibi/libkrw-taurine
 Description: libkrw Plug-In for libkernrw (Shared Library)

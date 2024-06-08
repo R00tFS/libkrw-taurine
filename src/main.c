@@ -1,25 +1,25 @@
 //
 //  main.c
-//  libkrw-libkernrw
+//  libkrw-taurine
 //
 //  Created by rootfs on 06/06/2024.
 //
 
 #include <libkrw_plugin.h>
-#include <libkernrw.h>
+#include "libkernrw/libkernrw.h"
 #include <errno.h>
 #include <mach/kern_return.h>
 
 int kread_wrapper(uint64_t from, void* to, size_t len) {
-    return kernRW_readbuf(from, to, len);
+    return libkernrw_readbuf(from, to, len);
 }
 
 int kwrite_wrapper(void *from, uint64_t to, size_t len) {
-    return kernRW_writebuf(to, from, len);
+    return libkernrw_writebuf(to, from, len);
 }
 
 int kbase_wrapper(uint64_t *kbase) {
-    return kernRW_getKernelBase(kbase);
+    return libkernrw_getKernelBase(kbase);
 }
                            
 int kmalloc_wrapper(uint64_t *addr, size_t size) {
