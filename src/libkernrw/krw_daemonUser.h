@@ -24,9 +24,9 @@
 #ifndef __VOUCHER_FORWARD_TYPE_DECLS__
 #define __VOUCHER_FORWARD_TYPE_DECLS__
 #ifdef __cplusplus
-extern "C" {
+ "C" {
 #endif
-    extern boolean_t voucher_mach_msg_set(mach_msg_header_t *msg) __attribute__((weak_import));
+     boolean_t voucher_mach_msg_set(mach_msg_header_t *msg) __attribute__((weak_import));
 #ifdef __cplusplus
 }
 #endif
@@ -48,9 +48,9 @@ extern "C" {
 #ifndef __MIG_STRNCPY_ZEROFILL_FORWARD_TYPE_DECLS__
 #define __MIG_STRNCPY_ZEROFILL_FORWARD_TYPE_DECLS__
 #ifdef __cplusplus
-extern "C" {
+ "C" {
 #endif
-    extern int mig_strncpy_zerofill(char *dest, const char *src, int len) __attribute__((weak_import));
+     int mig_strncpy_zerofill(char *dest, const char *src, int len) __attribute__((weak_import));
 #ifdef __cplusplus
 }
 #endif
@@ -94,7 +94,7 @@ __BEGIN_DECLS
 #ifdef    mig_external
 mig_external
 #else
-extern
+
 #endif    /* mig_external */
 kern_return_t krw_read32
 (
@@ -107,7 +107,7 @@ kern_return_t krw_read32
 #ifdef    mig_external
 mig_external
 #else
-extern
+
 #endif    /* mig_external */
 kern_return_t krw_read64
 (
@@ -120,7 +120,7 @@ kern_return_t krw_read64
 #ifdef    mig_external
 mig_external
 #else
-extern
+
 #endif    /* mig_external */
 kern_return_t krw_write32
 (
@@ -133,7 +133,7 @@ kern_return_t krw_write32
 #ifdef    mig_external
 mig_external
 #else
-extern
+
 #endif    /* mig_external */
 kern_return_t krw_write64
 (
@@ -146,7 +146,7 @@ kern_return_t krw_write64
 #ifdef    mig_external
 mig_external
 #else
-extern
+
 #endif    /* mig_external */
 kern_return_t krw_kernelBase
 (
@@ -158,7 +158,7 @@ kern_return_t krw_kernelBase
 #ifdef    mig_external
 mig_external
 #else
-extern
+
 #endif    /* mig_external */
 kern_return_t krw_kernelProc
 (
@@ -170,7 +170,7 @@ kern_return_t krw_kernelProc
 #ifdef    mig_external
 mig_external
 #else
-extern
+
 #endif    /* mig_external */
 kern_return_t krw_allProc
 (

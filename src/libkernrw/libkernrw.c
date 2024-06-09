@@ -3,14 +3,12 @@
 #include <errno.h>
 #include "krw_daemonUser.h"
 
-#define KERNRW_EXPORT __attribute__ ((visibility ("default")))
-
 extern kern_return_t mach_vm_read_overwrite(task_t task, mach_vm_address_t addr, mach_vm_size_t size, mach_vm_address_t data, mach_vm_size_t *outsize);
 extern kern_return_t mach_vm_write(task_t task, mach_vm_address_t addr, mach_vm_address_t data, mach_msg_type_number_t dataCnt);
 
 mach_port_t krwPort = MACH_PORT_NULL;
 
-KERNRW_EXPORT int requestKernRw(void) {
+int requestKernRw(void) {
     kern_return_t ret = host_get_special_port(mach_host_self(), HOST_LOCAL_NODE, 14, &krwPort);
     if (getuid() == 0 && ret == KERN_SUCCESS){
         if (MACH_PORT_VALID(krwPort)){
@@ -22,7 +20,7 @@ KERNRW_EXPORT int requestKernRw(void) {
     return EPERM;
 }
 
-KERNRW_EXPORT kern_return_t libkernrw_read32(uint64_t addr, uint32_t *val){
+kern_return_t libkernrw_read32(uint64_t addr, uint32_t *val){
     if (MACH_PORT_VALID(krwPort)){
         return krw_read32(krwPort, addr, val);
     }
@@ -30,14 +28,14 @@ KERNRW_EXPORT kern_return_t libkernrw_read32(uint64_t addr, uint32_t *val){
     return KERN_INVALID_NAME;
 }
 
-KERNRW_EXPORT kern_return_t libkernrw_read64(uint64_t addr, uint64_t *val){
+kern_return_t libkernrw_read64(uint64_t addr, uint64_t *val){
     if (MACH_PORT_VALID(krwPort)){
         return krw_read64(krwPort, addr, val);
     }
     return KERN_INVALID_NAME;
 }
 
-KERNRW_EXPORT kern_return_t libkernrw_write32(uint64_t addr, uint32_t val){
+kern_return_t libkernrw_write32(uint64_t addr, uint32_t val){
     if (MACH_PORT_VALID(krwPort)){
         return krw_write32(krwPort, addr, val);
     }
@@ -45,7 +43,7 @@ KERNRW_EXPORT kern_return_t libkernrw_write32(uint64_t addr, uint32_t val){
     return KERN_INVALID_NAME;
 }
 
-KERNRW_EXPORT kern_return_t libkernrw_write64(uint64_t addr, uint64_t val){
+kern_return_t libkernrw_write64(uint64_t addr, uint64_t val){
     if (MACH_PORT_VALID(krwPort)){
         return krw_write64(krwPort, addr, val);
     }
@@ -57,7 +55,7 @@ KERNRW_EXPORT kern_return_t libkernrw_write64(uint64_t addr, uint64_t val){
 #define KERNRW_CHUNK_SIZE32 sizeof(uint32_t)
 #define TFP0_MAX_CHUNK_SIZE 0xFFF
 
-KERNRW_EXPORT kern_return_t libkernrw_readbuf(uint64_t addr, void *buf, size_t len){
+kern_return_t libkernrw_readbuf(uint64_t addr, void *buf, size_t len){
     if (addr + len < addr || (mach_vm_address_t)buf + len < (mach_vm_address_t)buf){
         return KERN_INVALID_ARGUMENT;
     }
@@ -94,7 +92,7 @@ KERNRW_EXPORT kern_return_t libkernrw_readbuf(uint64_t addr, void *buf, size_t l
     return KERN_INVALID_NAME;
 }
 
-KERNRW_EXPORT kern_return_t libkernrw_writebuf(uint64_t addr, const void *buf, size_t len){
+kern_return_t libkernrw_writebuf(uint64_t addr, const void *buf, size_t len){
     if (addr + len < addr || (mach_vm_address_t)buf + len < (mach_vm_address_t)buf){
         return KERN_INVALID_ARGUMENT;
     }
@@ -149,7 +147,7 @@ KERNRW_EXPORT kern_return_t libkernrw_writebuf(uint64_t addr, const void *buf, s
     return KERN_INVALID_NAME;
 }
 
-KERNRW_EXPORT kern_return_t libkernrw_getKernelBase(uint64_t *val){
+kern_return_t libkernrw_getKernelBase(uint64_t *val){
     if (MACH_PORT_VALID(krwPort)){
         return krw_kernelBase(krwPort, val);
     }
