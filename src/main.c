@@ -31,7 +31,7 @@ int kdealloc_wrapper(uint64_t addr, size_t size) {
     return ENOTSUP;
 }
 
-__attribute__((used, visibility("default"))) krw_plugin_initializer_t krw_initializer(krw_handlers_t handlers) {
+__attribute__((used, visibility("default"))) int krw_initializer(krw_handlers_t handlers) {
     if (geteuid() != 0) return EPERM;
     
     int status = requestKernRw();
